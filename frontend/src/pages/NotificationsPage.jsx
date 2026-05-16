@@ -72,10 +72,10 @@ const NotificationsPage = () => {
                         className="card bg-base-200 shadow-sm hover:shadow-md transition-shadow"
                       >
                         <div className="card-body p-4">
-                          <div className="flex items-center justify-between gap-4">
+                          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             {/* USER INFO */}
-                            <div className="flex items-center gap-3">
-                              <div className="w-14 h-14 rounded-full overflow-hidden bg-base-300">
+                            <div className="flex min-w-0 items-center gap-3">
+                              <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-base-300">
                                 <img
                                   src={request.sender.profilePic}
                                   alt={request.sender.fullName}
@@ -83,15 +83,15 @@ const NotificationsPage = () => {
                                 />
                               </div>
 
-                              <div>
-                                <h3 className="font-semibold">
+                              <div className="min-w-0">
+                                <h3 className="truncate font-semibold">
                                   {request.sender.fullName}
                                 </h3>
                                 <div className="flex flex-wrap gap-1.5 mt-1">
-                                  <span className="badge badge-secondary badge-sm">
+                                  <span className="badge badge-secondary badge-sm h-auto whitespace-normal">
                                     Native: {request.sender.nativeLanguage}
                                   </span>
-                                  <span className="badge badge-outline badge-sm">
+                                  <span className="badge badge-outline badge-sm h-auto whitespace-normal">
                                     Learning: {request.sender.learningLanguage}
                                   </span>
                                 </div>
@@ -100,7 +100,7 @@ const NotificationsPage = () => {
 
                             {/* ACCEPT BUTTON */}
                             <button
-                              className="btn btn-primary btn-sm"
+                              className="btn btn-primary btn-sm w-full sm:w-auto"
                               disabled={isProcessing}
                               onClick={() =>
                                 acceptRequestMutation(request._id)
@@ -139,8 +139,8 @@ const NotificationsPage = () => {
                       className="card bg-base-200 shadow-sm"
                     >
                       <div className="card-body p-4">
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+                          <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full">
                             <img
                               src={notification.recipient.profilePic}
                               alt={notification.recipient.fullName}
@@ -148,8 +148,8 @@ const NotificationsPage = () => {
                             />
                           </div>
 
-                          <div className="flex-1">
-                            <h3 className="font-semibold">
+                          <div className="min-w-0 flex-1">
+                            <h3 className="truncate font-semibold">
                               {notification.recipient.fullName}
                             </h3>
                             <p className="text-sm my-1">
@@ -161,7 +161,7 @@ const NotificationsPage = () => {
                             </p>
                           </div>
 
-                          <div className="badge badge-success">
+                          <div className="badge badge-success w-fit">
                             <MessageSquareIcon className="h-3 w-3 mr-1" />
                             New Friend
                           </div>

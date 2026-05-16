@@ -3,6 +3,7 @@ import useAuthUser from "../hooks/useAuthUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
+import { getErrorMessage } from "../lib/errors";
 import {
   LoaderIcon,
   MapPinIcon,
@@ -35,7 +36,7 @@ const OnboardingPage = () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
     onError: (error) => {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error, "Unable to complete onboarding"));
     },
   });
 
@@ -65,7 +66,7 @@ const OnboardingPage = () => {
   const isStep3Valid = formState.location.trim() !== "";
 
   return (
-    <div className="h-screen bg-base-100 flex items-center justify-center px-4">
+    <div className="flex min-h-[100dvh] items-start justify-center overflow-y-auto bg-base-100 px-4 py-6 sm:items-center">
       <div className="card bg-base-200 w-full max-w-xl shadow-xl">
         <div className="card-body p-6">
           {/* HEADER */}

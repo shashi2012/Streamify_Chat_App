@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 
 import { capitialize } from "../lib/utils";
-import FriendCard, { getLanguageFlag } from "../components/FriendCard";
+import FriendCard from "../components/FriendCard";
+import { getLanguageFlag } from "../lib/language";
 import NoFriendsFound from "../components/NoFriendsFound";
 
 const HomePage = () => {
@@ -135,22 +136,22 @@ const HomePage = () => {
                   >
                     <div className="card-body p-5 space-y-4">
                       {/* USER INFO */}
-                      <div className="flex items-center gap-3">
-                        <div className="avatar size-16 rounded-full overflow-hidden">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <div className="avatar size-16 shrink-0 overflow-hidden rounded-full">
                           <img
                             src={user.profilePic}
                             alt={user.fullName}
                           />
                         </div>
 
-                        <div>
-                          <h3 className="font-semibold text-lg">
+                        <div className="min-w-0">
+                          <h3 className="truncate text-lg font-semibold">
                             {user.fullName}
                           </h3>
                           {user.location && (
-                            <div className="flex items-center text-xs opacity-70 mt-1">
-                              <MapPinIcon className="size-3 mr-1" />
-                              {user.location}
+                            <div className="mt-1 flex min-w-0 items-center text-xs opacity-70">
+                              <MapPinIcon className="mr-1 size-3 shrink-0" />
+                              <span className="truncate">{user.location}</span>
                             </div>
                           )}
                         </div>
@@ -158,18 +159,18 @@ const HomePage = () => {
 
                       {/* LANGUAGES */}
                       <div className="flex flex-wrap gap-1.5">
-                        <span className="badge badge-secondary">
+                        <span className="badge badge-secondary h-auto min-h-6 whitespace-normal">
                           {getLanguageFlag(user.nativeLanguage)}
                           Native: {capitialize(user.nativeLanguage)}
                         </span>
-                        <span className="badge badge-outline">
+                        <span className="badge badge-outline h-auto min-h-6 whitespace-normal">
                           {getLanguageFlag(user.learningLanguage)}
                           Learning: {capitialize(user.learningLanguage)}
                         </span>
                       </div>
 
                       {user.bio && (
-                        <p className="text-sm opacity-70">{user.bio}</p>
+                        <p className="break-words text-sm opacity-70">{user.bio}</p>
                       )}
 
                       {/* SEND FRIEND REQUEST */}

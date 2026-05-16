@@ -27,7 +27,7 @@ const App = () => {
   if (isLoading) return <PageLoader />;
 
   return (
-    <div className="h-screen" data-theme={theme}>
+    <div className="min-h-[100dvh] overflow-x-hidden bg-base-100" data-theme={theme}>
       <Routes>
         <Route
           path="/"
